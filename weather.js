@@ -42,7 +42,8 @@ function getLocHTML5(){
     	var longitude = position.coords.longitude;
     	// console.log(latitude + " " + longitude);
     	console.log ([latitude,longitude,"HTML5"]);
-    	return [latitude,longitude,"HTML5"];
+    	getWeather([latitude,longitude,"HTML5"]);
+    	// return [latitude,longitude,"HTML5"];
 	}
 	function error(){
 		// console.log("Error get geolocation via function getLocHTML5");
@@ -62,8 +63,9 @@ function getLocIp(){
 	         // function(data) { if(data)console.log(data.lat + " " +data.lon); },
 	         function(data) { 
 	         	if(data) {
-	         		console.longitude([data.lat,data.lon,"IP"]);
-	         		return[data.lat,data.lon,"IP"];
+	         		console.log([data.lat,data.lon,"IP"]);
+	         		getWeather([data.lat,data.lon,"IP"]);
+	         		// return[data.lat,data.lon,"IP"];
 	         	}  
 	         },
 	         function(xhr)  { if(xhr)console.error(xhr); }
@@ -114,16 +116,19 @@ function getWeather(arr){
 	console.log("getWeather :"+lat + " " + lon);
 
 	var api = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=061f24cf3cde2f60644a8240302983f2";
+	var units="&units=Imperial"
 	//api.openweathermap.org/data/2.5/weather?lat=35&lon=139
-
+	arr.push(api);
+	arr.push("Imperial");
 
     //wlink= "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=json&units=" + wType + "&APPID=061f24cf3cde2f60644a8240302983f2";
 
-	loadJSON( api,
+	loadJSON( (api+units),
 	    function(data) { 
 	       	if(data) {
 	       		console.log("from getWeather");
 	       		console.log(api);
+	       		console.log(arr);
 	       		console.log(data);
 	       		// console.longitude([data.lat,data.lon,"IP"]);
 	       		// return[data.lat,data.lon,"IP"];
@@ -134,13 +139,13 @@ function getWeather(arr){
 }
 
 
-// getLocHTML5();  //works unomment
+getLocHTML5();  //works unomment
 //getLocIp()
 // getLoc();
 // var test = getLocHTML5() //.then(console.log())
 // setTimeout(function(){console.log(test),300})
 // getCityState([40.92316,-73.8377]);
-getWeather([40.92316,-73.8377]);
+// getWeather([40.92316,-73.8377]);
 
 // data below from initial creation use as reference
 // <script type="text/javascript">
