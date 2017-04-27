@@ -62,7 +62,7 @@ function getLocIp(){
 	         // function(data) { if(data)console.log(data.lat + " " +data.lon); },
 	         function(data) { 
 	         	if(data) {
-	         		console.log([data.lat,data.lon,"IP"]);
+	         		console.longitude([data.lat,data.lon,"IP"]);
 	         		return[data.lat,data.lon,"IP"];
 	         	}  
 	         },
@@ -87,7 +87,25 @@ function loadJSON(path, success, error)	{
 // **********************************************************************
 
 
-
+function getCityState(arr){
+	var lat = arr[0];
+	var lon = arr[1];
+	var api = "http://api.geonames.org/findNearestAddressJSON?lat=" + lat;
+		api += "&lng=" + lon + "&username=demo";
+	loadJSON( api,
+	    // function(data) { if(data)console.log(data.lat + " " +data.lon); },
+	    function(data) { 
+	       	if(data) {
+	       		console.log("from getCityState");
+	       		console.log(api);
+	       		console.log(data);
+	       		// console.longitude([data.lat,data.lon,"IP"]);
+	       		// return[data.lat,data.lon,"IP"];
+	       	}  
+	    },
+	   function(xhr)  { if(xhr)console.error(xhr); }
+	);
+}
 
 
 
@@ -97,6 +115,7 @@ function loadJSON(path, success, error)	{
 // getLoc();
 var test = getLocHTML5() //.then(console.log())
 setTimeout(function(){console.log(test),300})
+getCityState([40.92316,-73.8377]);
 
 // data below from initial creation use as reference
 // <script type="text/javascript">
