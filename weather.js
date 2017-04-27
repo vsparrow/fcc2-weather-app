@@ -83,8 +83,8 @@ function loadJSON(path, success, error)	{
     xhr.send();
 }
 
-// **********************************************************************
-// **********************************************************************
+// ********************************************************************** getCityState
+// ********************************************************************** unneeded, only need lat lon for apu
 
 
 function getCityState(arr){
@@ -93,7 +93,6 @@ function getCityState(arr){
 	var api = "http://api.geonames.org/findNearestAddressJSON?lat=" + lat;
 		api += "&lng=" + lon + "&username=demo";
 	loadJSON( api,
-	    // function(data) { if(data)console.log(data.lat + " " +data.lon); },
 	    function(data) { 
 	       	if(data) {
 	       		console.log("from getCityState");
@@ -106,16 +105,42 @@ function getCityState(arr){
 	   function(xhr)  { if(xhr)console.error(xhr); }
 	);
 }
+// ********************************************************************** 
+// 
+
+function getWeather(arr){
+	var lat = arr[0];
+	var lon = arr[1];
+	console.log("getWeather :"+lat + " " + lon);
+
+	var api = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=061f24cf3cde2f60644a8240302983f2";
+	//api.openweathermap.org/data/2.5/weather?lat=35&lon=139
 
 
+    //wlink= "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=json&units=" + wType + "&APPID=061f24cf3cde2f60644a8240302983f2";
+
+	loadJSON( api,
+	    function(data) { 
+	       	if(data) {
+	       		console.log("from getWeather");
+	       		console.log(api);
+	       		console.log(data);
+	       		// console.longitude([data.lat,data.lon,"IP"]);
+	       		// return[data.lat,data.lon,"IP"];
+	       	}  
+	    },
+	   function(xhr)  { if(xhr)console.error(xhr); }
+	);
+}
 
 
 // getLocHTML5();  //works unomment
 //getLocIp()
 // getLoc();
-var test = getLocHTML5() //.then(console.log())
-setTimeout(function(){console.log(test),300})
-getCityState([40.92316,-73.8377]);
+// var test = getLocHTML5() //.then(console.log())
+// setTimeout(function(){console.log(test),300})
+// getCityState([40.92316,-73.8377]);
+getWeather([40.92316,-73.8377]);
 
 // data below from initial creation use as reference
 // <script type="text/javascript">
