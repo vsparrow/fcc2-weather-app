@@ -21,6 +21,18 @@
 // 						input: array [location name, temperature, weather condition, icon? if available]
 // 						output:	0 if susccesful, -1 if error
 
+// **********************************************************************  getLocHTML5
+// "Director" of query
+function getLoc(){
+ 	var html5 = getLocHTML5();
+ 	console.log(html5);
+}
+
+//problem waiting for return data
+//findings: The "good node.js /event driven" way of doing this is to not wait.
+//The caller should not wait for the value to be "returned" in the normal sense,
+// but rather send the routine that will handle the resulting value:
+
 
 // **********************************************************************  getLocHTML5
 function getLocHTML5(){
@@ -28,10 +40,14 @@ function getLocHTML5(){
 	function success(position){
 		var latitude  = position.coords.latitude;
     	var longitude = position.coords.longitude;
-    	console.log(latitude + " " + longitude);
+    	// console.log(latitude + " " + longitude);
+    	console.log ([latitude,longitude,"HTML5"]);
+    	return [latitude,longitude,"HTML5"];
 	}
 	function error(){
-		console.log("Error get geolocation via function getLocHTML5");
+		// console.log("Error get geolocation via function getLocHTML5");
+		getLocIp();
+		return -1
 	}
 	navigator.geolocation.getCurrentPosition(success, error);
 }
@@ -43,7 +59,13 @@ function getLocHTML5(){
 //pure JS no jQuery : http://stackoverflow.com/questions/9838812/how-can-i-open-a-json-file-in-javascript-without-jquery
 function getLocIp(){
 	loadJSON("http://ip-api.com/json",
-	         function(data) { if(data)console.log(data); },
+	         // function(data) { if(data)console.log(data.lat + " " +data.lon); },
+	         function(data) { 
+	         	if(data) {
+	         		console.log([data.lat,data.lon,"IP"]);
+	         		return[data.lat,data.lon,"IP"];
+	         	}  
+	         },
 	         function(xhr)  { if(xhr)console.error(xhr); }
 	);
 }
@@ -71,7 +93,10 @@ function loadJSON(path, success, error)	{
 
 
 // getLocHTML5();  //works unomment
-getLocIp()
+//getLocIp()
+// getLoc();
+var test = getLocHTML5() //.then(console.log())
+setTimeout(function(){console.log(test),300})
 
 // data below from initial creation use as reference
 // <script type="text/javascript">
