@@ -107,7 +107,7 @@ function getCityState(arr){
 	   function(xhr)  { if(xhr)console.error(xhr); }
 	);
 }
-// ********************************************************************** 
+// **********************************************************************  getWeather
 // 
 
 function getWeather(arr){
@@ -130,6 +130,7 @@ function getWeather(arr){
 	       		console.log(api);
 	       		console.log(arr);
 	       		console.log(data);
+	       		parseWeather(data);
 	       		// console.longitude([data.lat,data.lon,"IP"]);
 	       		// return[data.lat,data.lon,"IP"];
 	       	}  
@@ -137,6 +138,23 @@ function getWeather(arr){
 	   function(xhr)  { if(xhr)console.error(xhr); }
 	);
 }
+//********
+// **********************************************************************  parseWeather
+
+
+function parseWeather(wObj){  //accept weather object
+	console.log("parseWeather:")
+	console.log(wObj);
+
+	var city = wObj.name;
+	var temp = wObj.main.temp;
+	var wDescription = wObj.weather[0].description;
+	var wIcon = wObj.weather[0].icon;
+
+	console.log(city +" " +temp + " " + wDescription + " " + wIcon);
+}
+
+
 
 
 getLocHTML5();  //works unomment
