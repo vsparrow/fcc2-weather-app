@@ -22,6 +22,7 @@
 // 						output:	0 if susccesful, -1 if error
 
 
+// **********************************************************************  getLocHTML5
 function getLocHTML5(){
 
 	function success(position){
@@ -35,7 +36,42 @@ function getLocHTML5(){
 	navigator.geolocation.getCurrentPosition(success, error);
 }
 
-getLocHTML5();
+// **********************************************************************  getLocIp
+// **********************************************************************
+
+//http://ip-api.com/json for IP geolocation
+//pure JS no jQuery : http://stackoverflow.com/questions/9838812/how-can-i-open-a-json-file-in-javascript-without-jquery
+function getLocIp(){
+	loadJSON("http://ip-api.com/json",
+	         function(data) { if(data)console.log(data); },
+	         function(xhr)  { if(xhr)console.error(xhr); }
+	);
+}
+// **********************************************************************
+function loadJSON(path, success, error)	{
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) { if (success) success(JSON.parse(xhr.responseText)); } 
+            else { if (error) error(xhr);}
+        }
+    };
+    xhr.open("GET", path, true);
+    xhr.send();
+}
+
+// **********************************************************************
+// **********************************************************************
+
+
+
+
+
+
+
+// getLocHTML5();  //works unomment
+getLocIp()
 
 // data below from initial creation use as reference
 // <script type="text/javascript">
