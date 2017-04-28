@@ -59,12 +59,15 @@ function getLocHTML5(){
 //http://ip-api.com/json for IP geolocation
 //pure JS no jQuery : http://stackoverflow.com/questions/9838812/how-can-i-open-a-json-file-in-javascript-without-jquery
 function getLocIp(){
-	loadJSON("http://ip-api.com/json",
+	// loadJSON("http://ip-api.com/json/",
+	loadJSON("https://ipapi.co/json/",
 	         // function(data) { if(data)console.log(data.lat + " " +data.lon); },
 	         function(data) { 
 	         	if(data) {
-	         		console.log([data.lat,data.lon,"IP"]);
-	         		getWeather([data.lat,data.lon,"IP"]);
+	         		console.log( "FROM IPAPI.com:::::" );console.log(data.latitude, data.longitude);
+	         		// getWeather([data.lat,data.lon,"IP"]); //REENABLE AFTER TESTS //ip-api.com
+	         		getWeather([data.latitude,data.longitude,"IP"]); //ipapi.com different from above
+
 	         		// return[data.lat,data.lon,"IP"];
 	         	}  
 	         },
