@@ -215,7 +215,11 @@ function displayWeather(arr){
 	document.querySelector("#location").innerText = city;
 	document.querySelector("#temp").innerText = temp;
 	document.querySelector("#wDescription").innerText = wDescription ; 
-	document.querySelector("#wIcon").innerHTML = '<i class="wi ' + wIcon + '"></i>'; ;
+	document.querySelector("#wIcon").innerHTML = '<i class="wi ' + wIcon + '"></i>'; 
+
+	document.querySelector("#cspan").addEventListener("click",function(){fcToggle()}); 
+	// document.querySelector("#temp").addEventListener("click",fcToggle()); 
+	document.querySelector("#fspan").addEventListener("click",function(){fcToggle()}); 
 }
 
 // **********************************************************************  F to C concersion
@@ -244,12 +248,14 @@ function fcToggle(){
 	c.classList.toggle("hide");
 }
 
-
+// function addToggleListener(){
+// 		document.querySelector("#temp").addEventLister("click",fcToggle()); 
+// }
 
 
 
 getLocHTML5();  //works unomment
- 
+// addToggleListener() 
 // getCelcius(67);
 //displayWeather(["Beverly Hills", "77", "Sunny", "wi-day-sunny"]);
 //getLocIp()
