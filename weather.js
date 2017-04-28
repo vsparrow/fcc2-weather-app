@@ -253,8 +253,8 @@ function fcToggle(){
 // }
 
 
-
-getLocHTML5();  //works unomment
+getLocIp();
+// getLocHTML5();  //works unomment
 // addToggleListener() 
 // getCelcius(67);
 //displayWeather(["Beverly Hills", "77", "Sunny", "wi-day-sunny"]);
