@@ -152,7 +152,51 @@ function parseWeather(wObj){  //accept weather object
 	var wIcon = wObj.weather[0].icon;
 
 	console.log(city +" " +temp + " " + wDescription + " " + wIcon);
+	console.log(typeof wIcon)
 }
+
+// **********************************************************************  iconSelector
+// takes in weather icon number from openweather and converts it to Weather icons by Erik Flowers
+// https://erikflowers.github.io/weather-icons/
+
+// Day icon 	Night icon 	Description 		weather-icons-day		weather-icons-night
+// 01d.png 	01n.png 	clear sky			wi-day-sunny			wi-night-clear
+// 02d.png 	02n.png 	few clouds			wi-day-cloudy			wi-night-cloudy
+// 03d.png 	03n.png 	scattered clouds	wi-day-cloudy			wi-night-cloudy
+// 04d.png 	04n.png 	broken clouds		wi-day-cloudy			wi-night-cloudy
+// 09d.png 	09n.png 	shower rain 		wi-day-rain				wi-night-rain
+// 10d.png 	10n.png 	rain				wi-day-rain				wi-night-rain		
+// 11d.png 	11n.png 	thunderstorm		wi-day-storm-showers	wi-night-storm-showers
+// 13d.png 	13n.png 	snow				wi-day-snow				wi-night-snow
+// 50d.png 	50n.png 	mist 				wi-day-fog				wi-night-fog
+
+function wIconSelector(wIcon){
+//take openweather icon and translate to weather icons by Erik Flowers
+//wIcon is typof String
+	var wIcon2 = "wi-thermometer-exterior"; //default
+	switch(wIcon){
+		case "01d" :  wIcon2="wi-day-sunny"; break;
+		case "01n" :  wIcon2="wi-night-clear"; break;
+		case "02d" :  wIcon2="wi-day-cloudy"; break;
+		case "02n" :  wIcon2="wi-night-cloudy"; break;
+		case "03d" :  wIcon2="wi-day-cloudy"; break;
+		case "03n" :  wIcon2="wi-night-cloudy"; break;
+		case "04d" :  wIcon2="wi-day-cloudy"; break;
+		case "04n" :  wIcon2="wi-night-cloudy"; break;
+		case "09d" :  wIcon2="wi-day-rain"; break;
+		case "09n" :  wIcon2="wi-night-rain"; break;
+		case "10d" :  wIcon2="wi-day-rain"; break;
+		case "10n" :  wIcon2="wi-night-rain"; break;
+		case "11d" :  wIcon2="wi-day-storm-showers"; break;
+		case "11n" :  wIcon2="wi-night-storm-showers"; break;
+		case "13d" :  wIcon2="wi-day-snow"; break;
+		case "13n" :  wIcon2="wi-night-snow"; break;
+		case "50d" :  wIcon2="wi-day-fog"; break;
+		case "50n" :  wIcon2="wi-night-fog"; break;
+	}
+	return wIcon2;
+}
+
 
 
 
