@@ -18,6 +18,9 @@
 <style type="text/css">  
 	/*.wi {font-size: 250%;}*/
 	.well {background : white;  border: none; }
+/*	#c {display: none;}
+	#f {display: block;}*/
+	.hide {display : none;}
 	/*position: absolute; top: 25%; left: 25%;*/
 </style>
 
@@ -30,12 +33,16 @@
 			<h1><span id="location">LOCATION</span></h1>
 			<h1 id="wIcon"><i class="wi wi-night-sleet"></i></h1>
 			<h2 id="wDescription">Cloudy</h2>
-			<h2 ><spam id="temp">60</spam> <i class="wi wi-fahrenheit"></i></h2>
+			<!-- <h2 > -->
+				<h2 id="f"><span id="temp">60</span> <i class="wi wi-fahrenheit"></i></h2>
+				<h2 id="c" class="hide"><span id="tempC">14</span> <i class="wi wi-celsius"></i></h2>
+
+			<!-- </h2> -->
 <!-- GET GEOLOCATION USING HTML5 -->
 		</div>	<!-- row -->		
 	</div> <!-- container-->
 <h1></h1>
-
+<button onclick="fcToggle()">CLICK</button>
 </body>
 <script type="text/javascript" src="./weather.js"></script>
 </html>

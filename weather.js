@@ -219,6 +219,7 @@ function displayWeather(arr){
 }
 
 // **********************************************************************  F to C concersion
+
 function getCelcius(f){
 	// (°F  -  32)  x  5/9 = °C
 	console.log("f is " +f)
@@ -226,9 +227,29 @@ function getCelcius(f){
 	console.log("C is " +c) 
 	return Math.round(c);
 }
+// **********************************************************************  F to C toggle
+
+function fcToggle(){
+	var f = document.querySelector("#f");
+	var c = document.querySelector("#c");
+
+	// (lemons) ? alert("please give me a lemonade") : alert("then give me a beer");
+	// (f.style.display === "none") ? f.style.display = "inline" : f.style.display = "none";
+	// (c.style.display === "none") ? c.style.display = "inline" : c.style.display = "none";
+	// console.log(f.style.display)
+	// console.log(c.style.display)
+	// if(f.style.display == "none"){f.style.display = "inline"}else{f.style.display = "none"}
+	// if(c.style.display == "none"){c.style.display = "inline"}else{c.style.display = "none"}
+	f.classList.toggle("hide");
+	c.classList.toggle("hide");
+}
+
+
+
 
 
 getLocHTML5();  //works unomment
+ 
 // getCelcius(67);
 //displayWeather(["Beverly Hills", "77", "Sunny", "wi-day-sunny"]);
 //getLocIp()
