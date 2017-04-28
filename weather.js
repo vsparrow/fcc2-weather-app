@@ -140,19 +140,22 @@ function getWeather(arr){
 }
 //********
 // **********************************************************************  parseWeather
-
+//send array to displayWeather()
 
 function parseWeather(wObj){  //accept weather object
 	console.log("parseWeather:")
 	console.log(wObj);
 
 	var city = wObj.name;
-	var temp = wObj.main.temp;
+	var temp = wObj.main.temp; //number
 	var wDescription = wObj.weather[0].description;
-	var wIcon = wObj.weather[0].icon;
-
+	var wIcon = wObj.weather[0].icon; //string
+	wIcon = wIconSelector(wIcon);
+	temp  = Math.round(temp);
+	wDescription = wDescription[0].toUpperCase()+wDescription.slice(1);
 	console.log(city +" " +temp + " " + wDescription + " " + wIcon);
-	console.log(typeof wIcon)
+	console.log(typeof temp)
+	displayWeather([city,temp,wDescription,wIcon]);
 }
 
 // **********************************************************************  iconSelector
@@ -197,11 +200,26 @@ function wIconSelector(wIcon){
 	return wIcon2;
 }
 
+// **********************************************************************  diplay weather
+//not yet initialized using test datas! 
+//get from parseWeather
+//console.log(city +" " +temp + " " + wDescription + " " + wIcon);
+function displayWeather(arr){
+	var city 			= arr[0];
+	var temp 			= arr[1];
+	var wDescription 	= arr[2];
+	var wIcon 			= arr[3];
 
+	document.querySelector("#location").innerText = city;
+	document.querySelector("#temp").innerText = temp;
+	document.querySelector("#wDescription").innerText = wDescription ; 
+	document.querySelector("#wIcon").innerHTML = '<i class="wi ' + wIcon + '"></i>'; ;
+}
 
 
 
 getLocHTML5();  //works unomment
+//displayWeather(["Beverly Hills", "77", "Sunny", "wi-day-sunny"]);
 //getLocIp()
 // getLoc();
 // var test = getLocHTML5() //.then(console.log())
