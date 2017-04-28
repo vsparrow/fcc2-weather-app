@@ -150,12 +150,14 @@ function parseWeather(wObj){  //accept weather object
 	var temp = wObj.main.temp; //number
 	var wDescription = wObj.weather[0].description;
 	var wIcon = wObj.weather[0].icon; //string
+	var tempC = getCelcius(temp);
+
 	wIcon = wIconSelector(wIcon);
 	temp  = Math.round(temp);
 	wDescription = wDescription[0].toUpperCase()+wDescription.slice(1);
-	console.log(city +" " +temp + " " + wDescription + " " + wIcon);
+	console.log(city +" " +temp + " " + wDescription + " " + wIcon + " " +tempC);
 	console.log(typeof temp)
-	displayWeather([city,temp,wDescription,wIcon]);
+	displayWeather([city,temp,wDescription,wIcon,tempC]);
 }
 
 // **********************************************************************  iconSelector
@@ -216,9 +218,18 @@ function displayWeather(arr){
 	document.querySelector("#wIcon").innerHTML = '<i class="wi ' + wIcon + '"></i>'; ;
 }
 
+// **********************************************************************  F to C concersion
+function getCelcius(f){
+	// (°F  -  32)  x  5/9 = °C
+	console.log("f is " +f)
+	var c = (f - 32) * 5 / 9;
+	console.log("C is " +c) 
+	return Math.round(c);
+}
 
 
 getLocHTML5();  //works unomment
+// getCelcius(67);
 //displayWeather(["Beverly Hills", "77", "Sunny", "wi-day-sunny"]);
 //getLocIp()
 // getLoc();
