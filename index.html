@@ -16,20 +16,24 @@
 <link rel="stylesheet" type="text/css" href="./css/weather-icons.min.css">
 
 <style type="text/css">  
-	.wi {font-size: 250%;}
+	/*.wi {font-size: 250%;}*/
+	.well {background : white;  border: none; }
+	/*position: absolute; top: 25%; left: 25%;*/
 </style>
 
 </head>
 <body>
 
 	<div class="container">
-		<div class="row">
-			<h1>Weather Forcast for</h1>
-			<h1 id="location1">LOCATION</h1>
+		<div class="well text-center">
+			<h1>Weather Forcast for <span id="location">LOCATION</span></h1>
+			<h1 id="wIcon"><i class="wi wi-night-sleet"></i></h1>
+			<h2 id="wDescription">Cloudy</h2>
+			<h2 id="temp">60 <i class="wi wi-celsius"></i></h2>
 <!-- GET GEOLOCATION USING HTML5 -->
 		</div>	<!-- row -->		
 	</div> <!-- container-->
-<h1><i class="wi wi-night-sleet"></i></h1>
+<h1></h1>
 
 </body>
 </html>
