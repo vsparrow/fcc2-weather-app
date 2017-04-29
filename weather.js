@@ -65,8 +65,11 @@ function getLocIp(){
 	         function(data) { 
 	         	if(data) {
 	         		console.log( "FROM IPAPI.com:::::" );console.log(data.latitude, data.longitude);
+	         		console.log(data);
+	         		var city = data.city;
+	         		console.log(city)
 	         		// getWeather([data.lat,data.lon,"IP"]); //REENABLE AFTER TESTS //ip-api.com
-	         		getWeather([data.latitude,data.longitude,"IP"]); //ipapi.com different from above
+	         		getWeather([data.latitude,data.longitude,city]); //ipapi.com different from above
 
 	         		// return[data.lat,data.lon,"IP"];
 	         	}  
@@ -161,8 +164,8 @@ function getWeather(arr){
 	 	type: "GET`",
 	 	dataType: "jsonp",
 	    success: function( response ) {
-	        console.log( response ); // server response
-	        // parseWeather(response);
+	        // console.log( response ); // server response
+	        parseWeather(response,arr[2]);
 	    }
 	});
 } //getWeather
@@ -173,28 +176,56 @@ function getWeather(arr){
 
 
 
-// **********************************************************************  parseWeather openweathermap
+// // **********************************************************************  parseWeather openweathermap
+// //send array to displayWeather()
+
+// function parseWeather(wObj){  //accept weather object
+// 	console.log("parseWeather:")
+// 	console.log(wObj);
+
+// 	var city = wObj.name;
+// 	var temp = wObj.main.temp; //number
+// 	var wDescription = wObj.weather[0].description;
+// 	var wIcon = wObj.weather[0].icon; //string
+// 	var tempC = getCelcius(temp);
+
+// 	wIcon = wIconSelector(wIcon);
+// 	temp  = Math.round(temp);
+// 	wDescription = wDescription[0].toUpperCase()+wDescription.slice(1);
+// 	console.log(city +" " +temp + " " + wDescription + " " + wIcon + " " +tempC);
+// 	console.log(typeof temp)
+// 	displayWeather([city,temp,wDescription,wIcon,tempC]);
+// }
+
+
+// **********************************************************************  parseWeather darksky
 //send array to displayWeather()
 
-function parseWeather(wObj){  //accept weather object
+function parseWeather(wObj,city){  //accept weather object
 	console.log("parseWeather:")
 	console.log(wObj);
 
-	var city = wObj.name;
-	var temp = wObj.main.temp; //number
-	var wDescription = wObj.weather[0].description;
-	var wIcon = wObj.weather[0].icon; //string
+	//city passed in from outside function. better than using global var
+	var temp = wObj.currently.apparentTemperature;
+	var wDescription = wObj.currently.summary;
+	var wIcon = wObj.currently.icon //String
 	var tempC = getCelcius(temp);
 
-	wIcon = wIconSelector(wIcon);
-	temp  = Math.round(temp);
-	wDescription = wDescription[0].toUpperCase()+wDescription.slice(1);
-	console.log(city +" " +temp + " " + wDescription + " " + wIcon + " " +tempC);
-	console.log(typeof temp)
-	displayWeather([city,temp,wDescription,wIcon,tempC]);
+	console.log(wIcon + " :: " + typeof wIcon)
+	console.log("City variable in parseWeather : " +city);
+	// wIcon = wIconSelector(wIcon);
+	// temp  = Math.round(temp);
+	// wDescription = wDescription[0].toUpperCase()+wDescription.slice(1);
+	// console.log(city +" " +temp + " " + wDescription + " " + wIcon + " " +tempC);
+	// console.log(typeof temp)
+	// displayWeather([city,temp,wDescription,wIcon,tempC]);
 }
 
-// **********************************************************************  iconSelector
+
+
+
+
+// **********************************************************************  iconSelector   OPENWEATHER
 // takes in weather icon number from openweather and converts it to Weather icons by Erik Flowers
 // https://erikflowers.github.io/weather-icons/
 
@@ -208,6 +239,20 @@ function parseWeather(wObj){  //accept weather object
 // 11d.png 	11n.png 	thunderstorm		wi-day-storm-showers	wi-night-storm-showers
 // 13d.png 	13n.png 	snow				wi-day-snow				wi-night-snow
 // 50d.png 	50n.png 	mist 				wi-day-fog				wi-night-fog
+
+// **********************************************************************  iconSelector   darksky
+//http://darkskyapp.github.io/skycons/
+//apparently only 10 icons
+// CLEAR_DAY
+// CLEAR_NIGHT 
+// PARTLY_CLOUDY_DAY
+// PARTLY_CLOUDY_NIGHT
+// CLOUDY
+// RAIN
+// SLEET
+// SNOW
+// WIND
+// FOG
 
 function wIconSelector(wIcon){
 //take openweather icon and translate to weather icons by Erik Flowers
