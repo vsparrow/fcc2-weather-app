@@ -59,12 +59,15 @@ function getLocHTML5(){
 //http://ip-api.com/json for IP geolocation
 //pure JS no jQuery : http://stackoverflow.com/questions/9838812/how-can-i-open-a-json-file-in-javascript-without-jquery
 function getLocIp(){
-	loadJSON("http://ip-api.com/json",
+	// loadJSON("http://ip-api.com/json/",
+	loadJSON("https://ipapi.co/json/",
 	         // function(data) { if(data)console.log(data.lat + " " +data.lon); },
 	         function(data) { 
 	         	if(data) {
-	         		console.log([data.lat,data.lon,"IP"]);
-	         		getWeather([data.lat,data.lon,"IP"]);
+	         		console.log( "FROM IPAPI.com:::::" );console.log(data.latitude, data.longitude);
+	         		// getWeather([data.lat,data.lon,"IP"]); //REENABLE AFTER TESTS //ip-api.com
+	         		getWeather([data.latitude,data.longitude,"IP"]); //ipapi.com different from above
+
 	         		// return[data.lat,data.lon,"IP"];
 	         	}  
 	         },
@@ -107,39 +110,70 @@ function getCityState(arr){
 	   function(xhr)  { if(xhr)console.error(xhr); }
 	);
 }
-// **********************************************************************  getWeather
+// **********************************************************************  getWeather openweathermap
 // 
 
+// function getWeather(arr){
+// 	var lat = arr[0];
+// 	var lon = arr[1];
+// 	console.log("getWeather :"+lat + " " + lon);
+
+// 	var api = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=061f24cf3cde2f60644a8240302983f2";
+// 	var units="&units=Imperial"
+// 	//api.openweathermap.org/data/2.5/weather?lat=35&lon=139
+// 	arr.push(api);
+// 	arr.push("Imperial");
+
+//     //wlink= "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=json&units=" + wType + "&APPID=061f24cf3cde2f60644a8240302983f2";
+
+// 	loadJSON( (api+units),
+// 	    function(data) { 
+// 	       	if(data) {
+// 	       		console.log("from getWeather");
+// 	       		console.log(api);
+// 	       		console.log(arr);
+// 	       		console.log(data);
+// 	       		parseWeather(data);
+// 	       		// console.longitude([data.lat,data.lon,"IP"]);
+// 	       		// return[data.lat,data.lon,"IP"];
+// 	       	}  
+// 	    },
+// 	   function(xhr)  { if(xhr)console.error(xhr); }
+// 	);
+// }
+//********
+// **********************************************************************  getWeather darksky
 function getWeather(arr){
 	var lat = arr[0];
 	var lon = arr[1];
 	console.log("getWeather :"+lat + " " + lon);
 
-	var api = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=061f24cf3cde2f60644a8240302983f2";
-	var units="&units=Imperial"
-	//api.openweathermap.org/data/2.5/weather?lat=35&lon=139
-	arr.push(api);
-	arr.push("Imperial");
+	// var api = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=061f24cf3cde2f60644a8240302983f2";
+    var api = "https://api.darksky.net/forecast/c1c79c93374cb0e0b5e2439d84fd12f5/"; 
+    api += lat + "," + lon + "?exclude=minutely,hourly,daily";
+    //+ coords + "?exclude=minutely,hourly,daily";   40.9083,-73.8346
+	
+	//had to use ajax over loadJSON because kept getting
+	//No 'Access-Control-Allow-Origin' header is present on the requested resource. 
+	//Origin 'null' is therefore not allowed access. 
+	$.ajax({
+	    url: api,
+	 	type: "GET`",
+	 	dataType: "jsonp",
+	    success: function( response ) {
+	        console.log( response ); // server response
+	        // parseWeather(response);
+	    }
+	});
+} //getWeather
 
-    //wlink= "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=json&units=" + wType + "&APPID=061f24cf3cde2f60644a8240302983f2";
 
-	loadJSON( (api+units),
-	    function(data) { 
-	       	if(data) {
-	       		console.log("from getWeather");
-	       		console.log(api);
-	       		console.log(arr);
-	       		console.log(data);
-	       		parseWeather(data);
-	       		// console.longitude([data.lat,data.lon,"IP"]);
-	       		// return[data.lat,data.lon,"IP"];
-	       	}  
-	    },
-	   function(xhr)  { if(xhr)console.error(xhr); }
-	);
-}
-//********
-// **********************************************************************  parseWeather
+
+
+
+
+
+// **********************************************************************  parseWeather openweathermap
 //send array to displayWeather()
 
 function parseWeather(wObj){  //accept weather object
