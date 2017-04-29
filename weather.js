@@ -211,9 +211,11 @@ function parseWeather(wObj,city){  //accept weather object
 	var wIcon = wObj.currently.icon //String
 	var tempC = getCelcius(temp);
 
-	console.log(wIcon + " :: " + typeof wIcon)
 	console.log("City variable in parseWeather : " +city);
-	// wIcon = wIconSelector(wIcon);
+	
+	console.log(wIcon + " :: " + typeof wIcon);
+	wIcon = wIconSelector(wIcon);
+	console.log("wIcon is now : " + wIcon);
 	// temp  = Math.round(temp);
 	// wDescription = wDescription[0].toUpperCase()+wDescription.slice(1);
 	// console.log(city +" " +temp + " " + wDescription + " " + wIcon + " " +tempC);
@@ -243,40 +245,52 @@ function parseWeather(wObj,city){  //accept weather object
 // **********************************************************************  iconSelector   darksky
 //http://darkskyapp.github.io/skycons/
 //apparently only 10 icons
-// CLEAR_DAY
-// CLEAR_NIGHT 
-// PARTLY_CLOUDY_DAY
-// PARTLY_CLOUDY_NIGHT
-// CLOUDY
-// RAIN
-// SLEET
-// SNOW
-// WIND
-// FOG
+// CLEAR_DAY			wi-day-sunny
+// CLEAR_NIGHT 			wi-night-clear
+// PARTLY_CLOUDY_DAY 	wi-day-sunny-overcast
+// PARTLY_CLOUDY_NIGHT 	wi-night-partly-cloudy
+// CLOUDY 				wi-cloudy
+// RAIN 				wi-rain
+// SLEET 				wi-sleet	
+// SNOW 				wi-snow
+// WIND 				wi-windy
+// FOG 					wi-fog
 
 function wIconSelector(wIcon){
 //take openweather icon and translate to weather icons by Erik Flowers
 //wIcon is typof String
+	wIcon = wIcon.toUpperCase();
+	console.log("wIcon in wIconSelector after toUpperCase :: " + wIcon)
 	var wIcon2 = "wi-thermometer-exterior"; //default
 	switch(wIcon){
-		case "01d" :  wIcon2="wi-day-sunny"; break;
-		case "01n" :  wIcon2="wi-night-clear"; break;
-		case "02d" :  wIcon2="wi-day-cloudy"; break;
-		case "02n" :  wIcon2="wi-night-cloudy"; break;
-		case "03d" :  wIcon2="wi-day-cloudy"; break;
-		case "03n" :  wIcon2="wi-night-cloudy"; break;
-		case "04d" :  wIcon2="wi-day-cloudy"; break;
-		case "04n" :  wIcon2="wi-night-cloudy"; break;
-		case "09d" :  wIcon2="wi-day-rain"; break;
-		case "09n" :  wIcon2="wi-night-rain"; break;
-		case "10d" :  wIcon2="wi-day-rain"; break;
-		case "10n" :  wIcon2="wi-night-rain"; break;
-		case "11d" :  wIcon2="wi-day-storm-showers"; break;
-		case "11n" :  wIcon2="wi-night-storm-showers"; break;
-		case "13d" :  wIcon2="wi-day-snow"; break;
-		case "13n" :  wIcon2="wi-night-snow"; break;
-		case "50d" :  wIcon2="wi-day-fog"; break;
-		case "50n" :  wIcon2="wi-night-fog"; break;
+		case "CLEAR-DAY" : 				wIcon2 	= "wi-day-sunny"; break;		//for darksky
+		case "CLEAR-NIGHT" : 			wIcon2 	= "wi-night-clear"; break;
+		case "PARTLY-CLOUDY-DAY" : 		wIcon2 	= "wi-day-sunny-overcast"; break;
+		case "PARTLY-CLOUDY-NIGHT" : 	wIcon2	= "wi-night-partly-cloudy"; break;
+		case "CLOUDY" : 				wIcon2	= "wi-cloudy"; break;
+		case "RAIN" : 					wIcon2	= "wi-rain"; break;
+		case "SLEET" : 					wIcon2	= "wi-sleet"; break;
+		case "SNOW" : 					wIcon2	= "wi-snow"; break;
+		case "WIND" : 					wIcon2	= "wi-windy"; break;
+		case "FOG" : 					wIcon2	= "wi-fog"; break;
+		// case "01d" :  wIcon2="wi-day-sunny"; break;  		// for openweather
+		// case "01n" :  wIcon2="wi-night-clear"; break;
+		// case "02d" :  wIcon2="wi-day-cloudy"; break;
+		// case "02n" :  wIcon2="wi-night-cloudy"; break;
+		// case "03d" :  wIcon2="wi-day-cloudy"; break;
+		// case "03n" :  wIcon2="wi-night-cloudy"; break;
+		// case "04d" :  wIcon2="wi-day-cloudy"; break;
+		// case "04n" :  wIcon2="wi-night-cloudy"; break;
+		// case "09d" :  wIcon2="wi-day-rain"; break;
+		// case "09n" :  wIcon2="wi-night-rain"; break;
+		// case "10d" :  wIcon2="wi-day-rain"; break;
+		// case "10n" :  wIcon2="wi-night-rain"; break;
+		// case "11d" :  wIcon2="wi-day-storm-showers"; break;
+		// case "11n" :  wIcon2="wi-night-storm-showers"; break;
+		// case "13d" :  wIcon2="wi-day-snow"; break;
+		// case "13n" :  wIcon2="wi-night-snow"; break;
+		// case "50d" :  wIcon2="wi-day-fog"; break;
+		// case "50n" :  wIcon2="wi-night-fog"; break;
 	}
 	return wIcon2;
 }
