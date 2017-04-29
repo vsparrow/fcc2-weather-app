@@ -216,11 +216,11 @@ function parseWeather(wObj,city){  //accept weather object
 	console.log(wIcon + " :: " + typeof wIcon);
 	wIcon = wIconSelector(wIcon);
 	console.log("wIcon is now : " + wIcon);
-	// temp  = Math.round(temp);
+	temp  = Math.round(temp);
 	// wDescription = wDescription[0].toUpperCase()+wDescription.slice(1);
-	// console.log(city +" " +temp + " " + wDescription + " " + wIcon + " " +tempC);
+	console.log(city +" " +temp + " " + wDescription + " " + wIcon + " " +tempC);
 	// console.log(typeof temp)
-	// displayWeather([city,temp,wDescription,wIcon,tempC]);
+	displayWeather([city,temp,wDescription,wIcon,tempC]);
 }
 
 
