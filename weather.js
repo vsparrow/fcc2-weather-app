@@ -101,7 +101,6 @@ function wIconSelector(wIcon){
 //take darksky icon and translate to weather icons by Erik Flowers
 //wIcon is typof String
 	wIcon = wIcon.toUpperCase();
-	console.log("wIcon in wIconSelector after toUpperCase :: " + wIcon)
 	var wIcon2 = "wi-thermometer-exterior"; //default
 	switch(wIcon){
 		case "CLEAR-DAY" : 				wIcon2 	= "wi-day-sunny"; break;		//for darksky
@@ -137,9 +136,7 @@ function displayWeather(arr){
 // **********************************************************************  F to C conversion
 
 function getCelcius(f){
-	console.log("f is " +f)
 	var c = (f - 32) * 5 / 9;
-	console.log("C is " +c) 
 	return Math.round(c);
 }
 // **********************************************************************  F to C toggle
