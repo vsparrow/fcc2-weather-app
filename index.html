@@ -4,28 +4,25 @@
 	<title>Weather App</title>
 
 	<script   src="https://code.jquery.com/jquery-3.2.1.min.js"    
- integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>	
+	 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>	
 
 	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-<link rel="stylesheet" type="text/css" href="./css/weather-icons.min.css">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-<style type="text/css">  
-	/*.wi {font-size: 250%;}*/
-	.well {background : white;  border: none; }
-/*	#c {display: none;}
-	#f {display: block;}*/
-	.hide {display : none;}
-	/*position: absolute; top: 25%; left: 25%;*/
-</style>
+	<link rel="stylesheet" type="text/css" href="./css/weather-icons.min.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+	<style type="text/css">  
+
+		.well {background : white;  border: none; }
+		.hide {display : none;}
+
+	</style>
 
 </head>
 <body>
@@ -36,20 +33,13 @@
 			<h1><span id="location"></span></h1>
 			<h1 id="wIcon"><i class="wi wi-night-sleet"></i></h1>
 			<h2 id="wDescription"></h2>
-			<!-- <h2 > -->
-				
-
 			<h2 id="f"><span id="cspan"><span id="temp"></span> <i class="wi wi-fahrenheit"></i></span></h2>
 			<h2 id="c" class="hide"><span id="fspan"><span id="tempC">14</span> <i class="wi wi-celsius"></i></span></h2>
 			<p>*click temperature to alternate units</p>
-
-			<!-- </h2> -->
-<!-- GET GEOLOCATION USING HTML5 -->
 		</div>	<!-- row -->		
 	</div> <!-- container-->
-<h1></h1>
-<!-- <button onclick="fcToggle()">CLICK</button>
- --></body>
+</body>
+
 <script type="text/javascript" src="./weather.js"></script>
 </html>
 
