@@ -69,6 +69,9 @@ function getWeather(arr){
 	 	dataType: "jsonp",
 	    success: function( response ) {
 	        parseWeather(response,arr[2]);
+	    },
+	    error: function(){
+	    	errorGettingData(); //display error message if unable to contact darksky
 	    }
 	});
 }  
