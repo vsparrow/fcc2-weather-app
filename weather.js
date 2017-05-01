@@ -1,22 +1,24 @@
 
 // functions: 
+// In order of app cycle. Main functions listed
 
-// 	getLocIp 	use IP to get location
-//				use of HTML5 geolocation diregarding. Bad UX, needed to wait for user acceptance
-// 					input: none
-// 					output:-1 if error , else array with geolocation data [latitude,longitude
-
-// getWeather main func use location to call api
-// 	callWeatherApi 	function to get JSON data from api
-// 						input: array with geolocation data [latitude,longitude]
-// 						output:array with JSON inside [{key: value}]
-// 	parseJSON 		function to parse JSON data from callWeatherApi: get temp, weather etc
-// 						input: array with JSON inside [{key: value}]
-// 						output:array [location name, temperature, weather condition, icon? if available]
-// 	displyWeather	function to show data
-// 						input: array [location name, temperature, weather condition, icon? if available]
-// 						output:	0 if susccesful, -1 if error
-
+	// getLocIp 		use IP to get location
+	// 					use of HTML5 geolocation diregarded. Bad UX, needed to wait for user acceptance
+	// 					input: none
+	// 					success:call getWeather([data.latitude,data.longitude,city])
+	// 					error: 	call errorGettingData
+	
+	// getWeather 		call api to get weather info
+	// 					input: [data.latitude,data.longitude,city]
+	// 					success:call parseWeather(api response object, city); 
+	// 					error: 	call errorGettingData
+	
+	// paseWeather		parse data into consumable variables			
+	// 					input: (api response object, city)
+	// 					success: displayWeather([city,temp,weather Description,Icon,temp in C])
+	
+	// displayWeather	display weather to user
+	// 					input [city,temp,weather Description,Icon,temp in C]
 
 
 // **********************************************************************  getLocIp
