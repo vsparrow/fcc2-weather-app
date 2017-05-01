@@ -1,7 +1,8 @@
 
 // functions: 
 
-// 	getLocIP  use IP to get location of HTML5 failure
+// 	getLocIp 	use IP to get location
+//				use of HTML5 geolocation diregarding. Bad UX, needed to wait for user acceptance
 // 					input: none
 // 					output:-1 if error , else array with geolocation data [latitude,longitude
 
@@ -28,7 +29,12 @@ function getLocIp(){
 	         		getWeather([data.latitude,data.longitude,city]);  
 	         	}  
 	         },
-	         function(xhr)  { if(xhr)console.error(xhr); }
+	         function(xhr) { 
+	         	if(xhr){
+	         		console.error(xhr);
+	         		errorGettingData();  //if error getting location show error message	
+	         	} 
+	         }
 	);
 }
 // **********************************************************************
@@ -65,12 +71,11 @@ function getWeather(arr){
 	        parseWeather(response,arr[2]);
 	    }
 	});
-} //getWeather
+}  
 
 
 // **********************************************************************  parseWeather darksky
-//send array to displayWeather()
-
+ 
 function parseWeather(wObj,city){  //accept weather object
 
 	//city passed in from outside function. better than using global var
@@ -142,5 +147,19 @@ function fcToggle(){
 	c.classList.toggle("hide");
 }
 
+// **********************************************************************  errorGettingData
+// if error getting data, this function is called to let user know
+
+function errorGettingData(){
+	var display = document.querySelector(".well");
+	var displayHTML = '<h1>Unable To Display Weather At The Moment</h1>'
+
+	displayHTML += '<h2>Please Try Again Later</h2>'
+	displayHTML += '<h3>We apologize for the inconvenience</h3>'
+	display.innerHTML = displayHTML;
+}
+
+
 // **********************************************************************  Start App
 getLocIp();
+
